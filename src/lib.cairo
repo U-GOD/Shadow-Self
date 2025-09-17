@@ -1,32 +1,35 @@
-/// Interface representing `HelloContract`.
-/// This interface allows modification and retrieval of the contract balance.
 #[starknet::interface]
-pub trait IHelloStarknet<TContractState> {
-    /// Increase contract balance.
-    fn increase_balance(ref self: TContractState, amount: felt252);
-    /// Retrieve contract balance.
-    fn get_balance(self: @TContractState) -> felt252;
+pub trait IPrimeIdentity<TContractState> {
+    fn commit_attribute(ref self: TContractState, key: felt252, commitment: felt252);
+    fn get_attribute(self: @TContractState, key: felt252) -> felt252;
 }
 
-/// Simple contract for managing balance.
 #[starknet::contract]
-mod HelloStarknet {
-    use starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess};
+mod PrimeIdentity {
+    use starknet::{ContractAddress, get_caller_address};
 
     #[storage]
     struct Storage {
-        balance: felt252,
+        owner: ContractAddress,
+        attributes: LegacyMap<felt252, felt252>, // Key to commitment (hashed attribute)
+    }
+
+    #[constructor]
+    fn constructor(ref self: ContractState) {
+        let caller = get_caller_address();
+        self.owner.write(caller);
     }
 
     #[abi(embed_v0)]
-    impl HelloStarknetImpl of super::IHelloStarknet<ContractState> {
-        fn increase_balance(ref self: ContractState, amount: felt252) {
-            assert(amount != 0, 'Amount cannot be 0');
-            self.balance.write(self.balance.read() + amount);
+    impl PrimeIdentityImpl of super::IPrimeIdentity<ContractState> {
+        fn commit_attribute(ref self: ContractState, key: felt252, commitment: felt252) {
+            // Basic access control: only owner can commit
+            assert(self.owner.read() == get_caller_address(), 'Only owner');
+            self.attributes.write(key, commitment);
         }
 
-        fn get_balance(self: @ContractState) -> felt252 {
-            self.balance.read()
+        fn get_attribute(self: @ContractState, key: felt252) -> felt252 {
+            self.attributes.read(key)
         }
     }
 }
