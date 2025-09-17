@@ -1,1 +1,1 @@
-{"version":1,"contracts":[{"id":"flqo1vb57js1e","package_name":"shadow_self","contract_name":"HelloStarknet","module_path":"shadow_self::HelloStarknet","artifacts":{"sierra":"shadow_self_HelloStarknet.contract_class.json","casm":null}}]}
+{"version":1,"contracts":[{"id":"ffj1phin0qf92","package_name":"shadow_self","contract_name":"PrimeIdentity","module_path":"shadow_self::PrimeIdentity","artifacts":{"sierra":"shadow_self_PrimeIdentity.contract_class.json","casm":null}}]}
