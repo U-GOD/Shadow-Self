@@ -26,6 +26,7 @@ Why it's insane & new: Dynamic, forkable identities solve real-world privacy iss
 ## Installation
 1. Clone the repo:
 git clone https://github.com/U-GOD/Shadow-Self.git
+
 cd Shadow-Self
 
 2. Build contracts:
