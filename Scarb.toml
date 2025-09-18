@@ -7,8 +7,8 @@ edition = "2024_07"
 starknet = ">=2.12.2"  # Cairo 2.12+ for proofs (like solc ^0.8.20 in foundry.toml)
 openzeppelin = { git = "https://github.com/OpenZeppelin/cairo-contracts.git", tag = "v3.0.0-alpha.2" }  # Ownable v3 for internal safety
 
-# [dev-dependencies]  # Comment for MVP build (add for snforge tests in Phase 3, like forge test deps)
-# snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry.git", tag = "v0.49.0" }
+[dev-dependencies] 
+snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry.git", tag = "v0.49.0" }
 
 [[target.starknet-contract]]
 sierra = true  # Outputs Sierra for Starknet (ZK bytecode, like Solidity .json artifacts)

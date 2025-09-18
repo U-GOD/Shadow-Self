@@ -133,4 +133,18 @@ name = "shadow_self"
 version = "0.1.0"
 dependencies = [
  "openzeppelin",
+ "snforge_std",
+]
+
+[[package]]
+name = "snforge_scarb_plugin"
+version = "0.49.0"
+source = "git+https://github.com/foundry-rs/starknet-foundry.git?tag=v0.49.0#ddaa0a0cb1946b31de619d2343a44636bc50e945"
+
+[[package]]
+name = "snforge_std"
+version = "0.49.0"
+source = "git+https://github.com/foundry-rs/starknet-foundry.git?tag=v0.49.0#ddaa0a0cb1946b31de619d2343a44636bc50e945"
+dependencies = [
+ "snforge_scarb_plugin",
 ]
